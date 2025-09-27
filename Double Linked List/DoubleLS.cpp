@@ -34,6 +34,25 @@ void transversal(Node *head)
     cout << "Dah habis bang" << endl;
 }
 
+void reverseTransversal(Node *tail)
+{
+    if (tail == nullptr)
+    {
+        cout << "Double Linked List Kosong" << endl;
+    }
+
+    Node *temp = tail;
+    while (temp != nullptr)
+    {
+        cout << "Nama : " << temp->mhs.nama << endl;
+        cout << "Prodi : " << temp->mhs.prodi << endl;
+        cout << "Nim : " << temp->mhs.nim << endl;
+        temp = temp->prev;
+        cout << endl;
+    }
+    cout << "Dah habis bang" << endl;
+}
+
 void addFirst(Node *&head, Node *&tail, string nama, string prodi, int nim)
 {
     Node *newNode = new Node;
@@ -246,6 +265,9 @@ int main()
     edit(head, tail, 2, "Ifnu", "Informatika", 60);
     cout << "Setelah diedit" << endl;
     transversal(head);
+
+    cout << "Setelah dibalik" << endl;
+    reverseTransversal(tail);
 
     return 0;
 }
