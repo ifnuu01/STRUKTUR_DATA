@@ -16,8 +16,8 @@ struct Node
 
 Node *createNode();
 void display(Node *front);
-void enqueue(Node **front, Node **rear);
-void dequeue(Node **front);
+void enqueue(Node *&front, Node *&rear);
+void dequeue(Node *&front);
 
 int main()
 {
@@ -31,10 +31,10 @@ int main()
         switch (menu)
         {
         case 1:
-            enqueue(&FRONT, &REAR);
+            enqueue(FRONT, REAR);
             break;
         case 2:
-            dequeue(&FRONT);
+            dequeue(FRONT);
             break;
         case 3:
             display(FRONT);
@@ -76,28 +76,28 @@ void display(Node *front)
     }
 }
 
-void enqueue(Node **front, Node **rear)
+void enqueue(Node *&front, Node *&rear)
 {
     Node *nodeBaru = createNode();
-    if (!*front)
+    if (!front)
     {
-        *front = nodeBaru;
+        front = nodeBaru;
     }
     else
     {
-        (*rear)->next = nodeBaru;
+        (rear)->next = nodeBaru;
     }
-    *rear = nodeBaru;
+    rear = nodeBaru;
 }
 
-void dequeue(Node **front)
+void dequeue(Node *&front)
 {
-    if (!*front)
+    if (!front)
     {
         cout << "Antrian Kosong\n";
         return;
     }
-    Node *temp = *front;
-    *front = (*front)->next;
+    Node *temp = front;
+    front = (front)->next;
     delete temp;
 }

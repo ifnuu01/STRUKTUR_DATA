@@ -25,22 +25,22 @@ Node *createNode()
     return newNode;
 }
 
-void push(Node **top)
+void push(Node *&top)
 {
     Node *nodeBaru = createNode();
-    nodeBaru->next = *top;
-    *top = nodeBaru;
+    nodeBaru->next = top;
+    top = nodeBaru;
 }
 
-void pop(Node **top)
+void pop(Node *&top)
 {
-    if (*top == NULL)
+    if (top == NULL)
     {
         cout << "Stack underflow\n";
         return;
     }
-    Node *temp = *top;
-    *top = (*top)->next;
+    Node *temp = top;
+    top = top->next;
     delete temp;
 }
 void display(Node *top)
@@ -62,7 +62,7 @@ void display(Node *top)
 
 int main()
 {
-    Node *TOP = NULL;
+    Node *TOP = nullptr;
     int menu;
 
     do
@@ -72,10 +72,10 @@ int main()
         switch (menu)
         {
         case 1:
-            push(&TOP);
+            push(TOP);
             break;
         case 2:
-            pop(&TOP);
+            pop(TOP);
             break;
         case 3:
             display(TOP);
